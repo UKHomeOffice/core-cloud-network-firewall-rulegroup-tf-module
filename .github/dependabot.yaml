@@ -12,7 +12,7 @@ updates:
       - "dependencies"
       - "patch"
   - package-ecosystem: "terraform"
-    directory: "/"
+    directory: "/stateful"
     schedule:
       interval: "daily"
     commit-message:
@@ -23,7 +23,7 @@ updates:
       - "dependencies"
       - "patch"
   - package-ecosystem: "terraform"
-    directory: "/"
+    directory: "/stateless"
     schedule:
       interval: "daily"
     commit-message:
