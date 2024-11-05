@@ -1,0 +1,68 @@
+domainListRuleGroupExample:
+  name: example-domainlist
+  description: example domain list rule
+  capacity: 100
+  domainRuleType: "ALLOWLIST"
+  domainTargetTypes:
+  - HTTP_HOST
+  - TLS_SNI
+  domainTargets:
+  - "example.com"
+  - "contoso.org"
+
+statefulRuleGroupExample:
+  name: example-stateful
+  description: example standard stateful rule
+  capacity: 100
+  statefulRules:
+    rule1:
+      action: PASS
+      source: 127.0.0.1/32
+      sourcePort: 443
+      destination: 127.0.0.1/32
+      destinationPort: 127.0.0.1/32
+      protocol: TCP
+      direction: ANY
+      ruleOption:
+        keyword: sid
+        settings:
+        - 1
+    rule2:
+      action: PASS
+      source: 127.0.0.1/32
+      sourcePort: 8443
+      destination: 127.0.0.1/32
+      destinationPort: 127.0.0.1/32
+      protocol: TCP
+      direction: FORWARD
+      ruleOption:
+        keyword: sid
+        settings:
+        - 1
+
+suricataRuleGroupExample:
+  name: example-suricata
+  description: example suricata based firewall group rules
+  capacity: 100
+  suricataRulesVariables:
+    ipSets:
+        variable1:
+          key: WEB_HOSTS
+          values:
+          - 127.0.0.1/32
+          - 127.0.0.2/32
+        variable2:
+          key: EC2_HOSTS
+          values:
+          - 127.0.0.3/32
+          - 127.0.0.4/32
+    portSets:
+        variable1:
+          key: HTTP_PORTS
+          values:
+          - "443"
+          - "8443"
+  suricataRules: example.rules
+  suricataRules2: |
+      alert http $WEB_HOSTS any -> $EC2_HOSTS any (msg:"HTTP GET Request Containing Rule in URI"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"rule"; fast_pattern; classtype:bad-unknown; sid:123; rev:1;)
+      drop http $WEB_HOSTS any -> $EC2_HOSTS any (msg:"HTTP GET Request Containing Rule in URI"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"rule"; fast_pattern; classtype:bad-unknown; sid:123; rev:1;)
