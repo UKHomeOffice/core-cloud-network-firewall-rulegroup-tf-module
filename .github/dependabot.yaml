@@ -23,7 +23,7 @@ updates:
       - "dependencies"
       - "patch"
   - package-ecosystem: "terraform"
-    directory: "/modules/*"
+    directory: "/"
     schedule:
       interval: "daily"
     commit-message:
