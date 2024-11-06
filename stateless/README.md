@@ -36,5 +36,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_aws_networkfirewall_rule_group_arn"></a> [aws\_networkfirewall\_rule\_group\_arn](#output\_aws\_networkfirewall\_rule\_group\_arn) | The arn of the network firewall rulegroup that is created |
 <!-- END_TF_DOCS -->
