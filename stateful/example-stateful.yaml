@@ -20,7 +20,7 @@ statefulRuleGroupExample:
       source: 127.0.0.1/32
       sourcePort: 443
       destination: 127.0.0.1/32
-      destinationPort: 127.0.0.1/32
+      destinationPort: 443
       protocol: TCP
       direction: ANY
       ruleOption:
@@ -32,7 +32,7 @@ statefulRuleGroupExample:
       source: 127.0.0.1/32
       sourcePort: 8443
       destination: 127.0.0.1/32
-      destinationPort: 127.0.0.1/32
+      destinationPort: 443
       protocol: TCP
       direction: FORWARD
       ruleOption:
@@ -47,22 +47,19 @@ suricataRuleGroupExample:
   suricataRulesVariables:
     ipSets:
         variable1:
-          key: WEB_HOSTS
+          key: WEB_HOST
           values:
           - 127.0.0.1/32
-          - 127.0.0.2/32
         variable2:
           key: EC2_HOSTS
           values:
           - 127.0.0.3/32
-          - 127.0.0.4/32
     portSets:
         variable1:
           key: HTTP_PORTS
           values:
-          - "443"
           - "8443"
   suricataRules: example.rules
   suricataRules2: |
-      alert http $WEB_HOSTS any -> $EC2_HOSTS any (msg:"HTTP GET Request Containing Rule in URI"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"rule"; fast_pattern; classtype:bad-unknown; sid:123; rev:1;)
-      drop http $WEB_HOSTS any -> $EC2_HOSTS any (msg:"HTTP GET Request Containing Rule in URI"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"rule"; fast_pattern; classtype:bad-unknown; sid:123; rev:1;)
+    alert ip $WEB_HOSTS any -> $EC2_HOSTS $HTTP_PORTS (flow:to_server; msg:"Allow HTTP"; sid:202409061; rev:1;)
+    pass ip $WEB_HOSTS any -> $EC2_HOSTS $HTTP_PORTS (flow:to_server; msg:"pass rule no logging"; sid:202409062; rev:1;)
