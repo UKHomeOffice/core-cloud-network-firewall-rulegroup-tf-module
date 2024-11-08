@@ -70,12 +70,7 @@ resource "aws_networkfirewall_rule_group" "this" {
           }
           rule_option {
             keyword = "sid"
-            settings = ["2"]
-          }
-
-          rule_option {
-            keyword = "gid"
-            settings = ["5"]
+            settings = [stateful_rule.value[index(keys(stateful_rules), each.key)]]
           }
         }
       }
