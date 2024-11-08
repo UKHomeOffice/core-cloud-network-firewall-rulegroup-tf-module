@@ -70,7 +70,7 @@ resource "aws_networkfirewall_rule_group" "this" {
           }
           rule_option {
             keyword = "sid"
-            settings = [ join("", regexall("[[:digit:]]", sha256(jsonencode(stateful_rule.value))))]
+            settings = [ substr(join("", regexall("[[:digit:]]", sha256(jsonencode(stateful_rule.value))),0,15) )]
           }
         }
       }
