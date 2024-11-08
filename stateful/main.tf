@@ -69,8 +69,11 @@ resource "aws_networkfirewall_rule_group" "this" {
             source_port      = stateful_rule.value.sourcePort
           }
           rule_option {
-            keyword  = stateful_rule.value.ruleOption.keyword
-            settings = stateful_rule.value.ruleOption.settings
+            keyword = "sid:${stateful_rule.value + 1}"
+          }
+
+          rule_option {
+            keyword = "gid:${stateful_rule.value + 1}"
           }
         }
       }
