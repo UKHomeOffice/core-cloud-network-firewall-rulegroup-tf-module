@@ -80,14 +80,6 @@ resource "aws_networkfirewall_rule_group" "this" {
               settings = try(rule_option.value.settings, null)
             }
           }
-
-          # dynamic "rule_option" {
-          #   for_each = stateful_rule.value.ruleOption
-          #   content {
-          #     keyword  = rule_option.value.keyword == "sid" ? null : try(rule_option.value.keyword, null)
-          #     settings = rule_option.value.keyword == "sid" ? null : try(rule_option.value.settings, null)
-          #   }
-          # }
         }
       }
     }

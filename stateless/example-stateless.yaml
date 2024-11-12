@@ -6,11 +6,9 @@ ruleGroup1:
     action1:
       dimensions:
       - 2
-      - "helloworld"
     action2:
       dimensions:
       - 3
-      - "foobar"
   statelessRules:
     rule1:
       priority: 1

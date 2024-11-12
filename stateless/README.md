@@ -1,3 +1,88 @@
+## Example Usage
+```
+module "stateless_example" {
+  source = "git::git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//statelessref=main"
+
+  name               = "example-stateless-rules"
+  description        = "Example stateless rules"
+  capacity           = 100
+  custom_actions     = {
+    action1 = {
+      dimensions = [ 1 ] 
+    }
+    action2 = {
+      dimensions = [ 2 ] 
+    }
+  }
+  stateless_rules    = {
+    rule1 = {
+      priority = 1
+      action = [ "aws:pass" ]
+      source = [
+        "127.0.0.1/32",
+        "127.0.0.2/32"
+      ]
+      sourcePorts = {
+        range1 = {
+          from = "443"
+          to   = "443"
+        }
+        range2 = {
+          from = "8443"
+          to   = "8443"
+        }
+      }
+      destination = [
+        "127.0.0.3/32"
+      ]
+      destinationPorts = {
+        range1 = {
+          from = "443"
+          to   = "443"
+        }
+        range2 = {
+          from = "8443"
+          to   = "8443"
+        }
+      }
+      protocols: [ 6 ]
+      tcp = {
+        flags = [
+          "SYN"
+        ]
+        masks = [
+          "SYN",
+          "ACK
+        ]
+      }
+    }
+    rule2 = {
+      priority = 2
+      action = [ "aws:pass" ]
+      source = [
+        "127.0.0.1/32"
+      ]
+      sourcePorts = {
+        range1 = {
+          from = "8080"
+          to   = "8080"
+        }
+      }
+      destination = [
+        "127.0.0.2/32"
+      ]
+      destinationPorts = {
+        range1 = {
+          from = "8080"
+          to   = "8080"
+        }
+      }
+      protocols: [ 17 ]
+    }
+  }
+}
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

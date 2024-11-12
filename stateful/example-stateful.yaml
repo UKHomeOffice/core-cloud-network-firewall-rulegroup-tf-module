@@ -24,12 +24,8 @@ statefulRuleGroupExample:
       destinationPort: 443
       protocol: TCP
       direction: ANY
-      ruleOptions:
-        option1:
-          keyword: sid
-          settings:
-          - 98765
     rule2:
+      sid: 12346
       action: PASS
       source: 127.0.0.1/32
       sourcePort: 8443
@@ -66,5 +62,5 @@ suricataRuleGroupExample:
           - "8443"
   suricataRules: example.rules
   suricataRules2: |
-    alert ip $WEB_HOSTS any -> $EC2_HOSTS $HTTP_PORTS (flow:to_server; msg:"Allow HTTP"; sid:202409061; rev:1;)
-    pass ip $WEB_HOSTS any -> $EC2_HOSTS $HTTP_PORTS (flow:to_server; msg:"pass rule no logging"; sid:202409062; rev:1;)
+    alert ip $WEB_HOSTS any -> $EC2_HOSTS $HTTP_PORTS (flow:to_server; msg:"Allow HTTP"; sid:123456; rev:1;)
+    pass ip $WEB_HOSTS any -> $EC2_HOSTS $HTTP_PORTS (flow:to_server; msg:"pass rule no logging"; sid:123457; rev:1;)

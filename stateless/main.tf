@@ -52,7 +52,7 @@ resource "aws_networkfirewall_rule_group" "this" {
                 }
 
                 dynamic "source_port" {
-                  for_each = stateless_rule.value.sourcePort
+                  for_each = stateless_rule.value.sourcePorts
                   content {
                     from_port = source_port.value.from
                     to_port   = source_port.value.to
@@ -67,7 +67,7 @@ resource "aws_networkfirewall_rule_group" "this" {
                 }
 
                 dynamic "destination_port" {
-                  for_each = stateless_rule.value.destinationPort
+                  for_each = stateless_rule.value.destinationPorts
                   content {
                     from_port = destination_port.value.from
                     to_port   = destination_port.value.to
