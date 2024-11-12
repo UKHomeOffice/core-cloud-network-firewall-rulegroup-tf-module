@@ -69,8 +69,16 @@ resource "aws_networkfirewall_rule_group" "this" {
             source_port      = stateful_rule.value.sourcePort
           }
           rule_option {
-            keyword = "sid"
-            settings = [ substr(join("", regexall("[[:digit:]]", sha256(jsonencode(stateful_rule.value)))),0,5 )]
+            keyword  = "sid"
+            settings = [try(stateful_rule.value.sid, substr(join("", regexall("[[:digit:]]", sha256(jsonencode(stateful_rule.value)))), 0, 8))]
+          }
+
+          dynamic "rule_option" {
+            for_each = stateful_rule.value.ruleOption
+            content {
+              keyword  = rule_option.value.keyword == "sid" ? null : rule_option.value.keyword
+              settings = rule_option.value.keyword == "sid" ? null : rule_option.value.settings
+            }
           }
         }
       }
