@@ -24,7 +24,7 @@ statefulRuleGroupExample:
       destinationPort: 443
       protocol: TCP
       direction: ANY
-      ruleOption:
+      ruleOptions:
         option1:
           keyword: sid
           settings:
@@ -37,7 +37,7 @@ statefulRuleGroupExample:
       destinationPort: 8443
       protocol: TCP
       direction: FORWARD
-      ruleOption:
+      ruleOptions:
         option1:
           keyword: msg
           settings:
