@@ -21,7 +21,7 @@ variable "encryption_configuration" {
 
 variable "stateful_rules" {
   description = "Configuration of standard stateful firewall rules"
-  type        = map(any)
+  type        = any
   default     = {}
 }
 

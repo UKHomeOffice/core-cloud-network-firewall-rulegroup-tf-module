@@ -16,6 +16,7 @@ statefulRuleGroupExample:
   capacity: 100
   statefulRules:
     rule1:
+      sid: 12345
       action: PASS
       source: 127.0.0.1/32
       sourcePort: 443
@@ -24,21 +25,25 @@ statefulRuleGroupExample:
       protocol: TCP
       direction: ANY
       ruleOption:
-        keyword: sid
-        settings:
-        - 1
+        option1:
+          keyword: sid
+          settings:
+          - 56789
     rule2:
       action: PASS
       source: 127.0.0.1/32
       sourcePort: 8443
       destination: 127.0.0.1/32
-      destinationPort: 443
+      destinationPort: 8443
       protocol: TCP
       direction: FORWARD
       ruleOption:
-        keyword: sid
-        settings:
-        - 1
+        option1:
+          keyword: msg
+          settings:
+          - "this is a test rule"
+        option2:
+          keyword: noalert
 
 suricataRuleGroupExample:
   name: example-suricata

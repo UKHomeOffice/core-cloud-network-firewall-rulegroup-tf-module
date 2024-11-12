@@ -34,7 +34,7 @@ No modules.
 | <a name="input_encryption_configuration"></a> [encryption\_configuration](#input\_encryption\_configuration) | Encryption configuration of firewall rules | `map(any)` | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the firewall group rule | `string` | n/a | yes |
 | <a name="input_stateful_rule_order"></a> [stateful\_rule\_order](#input\_stateful\_rule\_order) | Specify the process order of rules in the rule group | `string` | `""` | no |
-| <a name="input_stateful_rules"></a> [stateful\_rules](#input\_stateful\_rules) | Configuration of standard stateful firewall rules | `map(any)` | `{}` | no |
+| <a name="input_stateful_rules"></a> [stateful\_rules](#input\_stateful\_rules) | Configuration of standard stateful firewall rules | `any` | `{}` | no |
 | <a name="input_suricata_rules"></a> [suricata\_rules](#input\_suricata\_rules) | Configuration of suricata firewall rule variables | `string` | `""` | no |
 | <a name="input_suricata_rules_variables"></a> [suricata\_rules\_variables](#input\_suricata\_rules\_variables) | Configuration of suricata firewall rules | `map(any)` | `{}` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Resource Tags | `map(string)` | `{}` | no |
