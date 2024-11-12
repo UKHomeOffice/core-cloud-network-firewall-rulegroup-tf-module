@@ -77,7 +77,7 @@ resource "aws_networkfirewall_rule_group" "this" {
             for_each = stateful_rule.value.ruleOption
             content {
               keyword  = rule_option.value.keyword == "sid" ? null : rule_option.value.keyword
-              settings = rule_option.value.keyword == "sid" ? null : rule_option.value.settings
+              settings = rule_option.value.keyword == "sid" ? null : try(rule_option.value.settings, null)
             }
           }
         }
