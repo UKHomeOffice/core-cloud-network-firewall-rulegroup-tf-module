@@ -20,7 +20,7 @@ statefulRuleGroupExample:
       action: PASS
       source: 127.0.0.1/32
       sourcePort: 443
-      destination: 127.0.0.1/32
+      destination: 127.0.0.2/32
       destinationPort: 443
       protocol: TCP
       direction: ANY
@@ -28,20 +28,20 @@ statefulRuleGroupExample:
         option1:
           keyword: sid
           settings:
-          - 56789
+          - 98765
     rule2:
       action: PASS
       source: 127.0.0.1/32
       sourcePort: 8443
-      destination: 127.0.0.1/32
+      destination: 127.0.0.2/32
       destinationPort: 8443
       protocol: TCP
-      direction: FORWARD
+      direction: ANY
       ruleOptions:
         option1:
           keyword: msg
           settings:
-          - "this is a test rule"
+          - "\"this is a stateful drop rule\""
         option2:
           keyword: noalert
 
