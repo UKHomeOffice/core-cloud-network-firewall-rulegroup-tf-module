@@ -76,7 +76,7 @@ resource "aws_networkfirewall_rule_group" "this" {
           dynamic "rule_option" {
             for_each = { for k, v in stateful_rule.value.ruleOptions : k => v if v.keyword != "sid" }
             content {
-              keyword = rule_option.value.keyword
+              keyword  = rule_option.value.keyword
               settings = try(rule_option.value.settings, null)
             }
           }
