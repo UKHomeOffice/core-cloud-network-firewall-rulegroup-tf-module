@@ -1,7 +1,7 @@
 ## Example Usage
 ```
 module "stateless_example" {
-  source = "git::git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//statelessref=main"
+  source = "git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//statelessref=main"
 
   name               = "example-stateless-rules"
   description        = "Example stateless rules"

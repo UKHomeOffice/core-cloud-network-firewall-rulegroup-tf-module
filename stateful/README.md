@@ -3,7 +3,7 @@
 ### Domain Allow/Block List
 ```
 module "domain_allow" {
-  source = "git::git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//stateful?ref=main"
+  source = "git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//stateful?ref=main"
 
   name               = "example-domain-allowlist"
   description        = "List of domains that are allowed"
@@ -20,7 +20,7 @@ module "domain_allow" {
 ### Standard Stateful Rule
 ```
 module "stateful_rule" {
-  source = "git::git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//stateful?ref=main"
+  source = "git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//stateful?ref=main"
 
   name               = "example-stateful-rules"
   description        = "Example Stateful Rules"
@@ -67,7 +67,7 @@ Rules may have one or many options and these generally are the same ones used in
 ### Suricata Styled Rules
 ```
 module "suricata_rule" {
-  source = "git::git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//stateful?ref=main"
+  source = "git::https://github.com/UKHomeOffice/core-cloud-network-firewall-rulegroup-tf-module.git//stateful?ref=main"
 
   name                     = "example-suricata-rules"
   description              = "Example Suricata Rules"
