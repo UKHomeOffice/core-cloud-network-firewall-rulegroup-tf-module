@@ -25,7 +25,7 @@ variable "stateless_rules" {
 }
 
 variable "custom_actions" {
-  description = "Configuration of Custom Actions - mainly just custom cloudwatch metics (dimensions) at this time"
+  description = "Configuration of Custom Actions - mainly just custom cloudwatch metrics (dimensions) at this time"
   type        = map(any)
   default     = {}
 }
