@@ -45,7 +45,7 @@ suricataRuleGroupExample:
   name: example-suricata
   description: example suricata based firewall group rules
   capacity: 100
-  suricataRulesVariables:
+  ruleVariables:
     ipSets:
         variable1:
           key: WEB_HOST

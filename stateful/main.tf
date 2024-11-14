@@ -16,11 +16,11 @@ resource "aws_networkfirewall_rule_group" "this" {
   rule_group {
 
     dynamic "rule_variables" {
-      for_each = length(var.suricata_rules_variables) > 0 ? [1] : []
+      for_each = length(var.rule_variables) > 0 ? [1] : []
 
       content {
         dynamic "ip_sets" {
-          for_each = try(var.suricata_rules_variables.ipSets, {})
+          for_each = try(var.rule_variables.ipSets, {})
           content {
             key = ip_sets.value.key
             ip_set {
@@ -30,7 +30,7 @@ resource "aws_networkfirewall_rule_group" "this" {
         }
 
         dynamic "port_sets" {
-          for_each = try(var.suricata_rules_variables.portSets, {})
+          for_each = try(var.rule_variables.portSets, {})
           content {
             key = port_sets.value.key
             port_set {

@@ -25,14 +25,14 @@ variable "stateful_rules" {
   default     = {}
 }
 
-variable "suricata_rules_variables" {
-  description = "Configuration of suricata firewall rules"
+variable "rule_variables" {
+  description = "Configuration of firewall rule variables"
   type        = map(any)
   default     = {}
 }
 
 variable "suricata_rules" {
-  description = "Configuration of suricata firewall rule variables"
+  description = "Configuration of suricata firewall rules"
   type        = string
   default     = ""
 }
