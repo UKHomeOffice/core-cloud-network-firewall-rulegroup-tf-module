@@ -45,36 +45,36 @@ resource "aws_networkfirewall_rule_group" "this" {
               actions = stateless_rule.value.action
               match_attributes {
                 dynamic "source" {
-                  for_each = toset(stateless_rule.value.source)
+                  for_each = length(try(toset(stateless_rule.value.source), {})) > 0 ? [1] : []
                   content {
-                    address_definition = source.key
+                    address_definition = try(source.key, null)
                   }
                 }
 
                 dynamic "source_port" {
-                  for_each = stateless_rule.value.sourcePorts
+                  for_each = length(try(stateless_rule.value.sourcePorts, {})) > 0 ? [1] : []
                   content {
-                    from_port = source_port.value.from
-                    to_port   = source_port.value.to
+                    from_port = try(source_port.value.from, null)
+                    to_port   = try(source_port.value.to, null)
                   }
                 }
 
                 dynamic "destination" {
-                  for_each = toset(stateless_rule.value.destination)
+                  for_each = length(try(toset(stateless_rule.value.destination), {})) > 0 ? [1] : []
                   content {
-                    address_definition = destination.key
+                    address_definition = try(destination.key, null)
                   }
                 }
 
                 dynamic "destination_port" {
-                  for_each = stateless_rule.value.destinationPorts
+                  for_each = length(try(toset(stateless_rule.value.destinationPorts), {})) > 0 ? [1] : []
                   content {
-                    from_port = destination_port.value.from
-                    to_port   = destination_port.value.to
+                    from_port = try(destination_port.value.from, null)
+                    to_port   = try(destination_port.value.to, null)
                   }
                 }
 
-                protocols = stateless_rule.value.protocols
+                protocols = try(stateless_rule.value.protocols, null)
 
                 dynamic "tcp_flag" {
                   for_each = length(try(stateless_rule.value.tcp, {})) > 0 ? [1] : []
