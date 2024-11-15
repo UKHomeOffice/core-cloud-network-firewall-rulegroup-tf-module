@@ -45,14 +45,14 @@ resource "aws_networkfirewall_rule_group" "this" {
               actions = stateless_rule.value.action
               match_attributes {
                 dynamic "source" {
-                  for_each = length(try(toset(stateless_rule.value.source), {})) > 0 ? [1] : []
+                  for_each = length(try(toset(stateless_rule.value.source), {})) > 0 ? stateless_rule.value.source : []
                   content {
                     address_definition = try(source.key, null)
                   }
                 }
 
                 dynamic "source_port" {
-                  for_each = length(try(stateless_rule.value.sourcePorts, {})) > 0 ? [1] : []
+                  for_each = length(try(stateless_rule.value.sourcePorts, {})) > 0 ? stateless_rule.value.sourcePorts : []
                   content {
                     from_port = try(source_port.value.from, null)
                     to_port   = try(source_port.value.to, null)
@@ -60,14 +60,14 @@ resource "aws_networkfirewall_rule_group" "this" {
                 }
 
                 dynamic "destination" {
-                  for_each = length(try(toset(stateless_rule.value.destination), {})) > 0 ? [1] : []
+                  for_each = length(try(toset(stateless_rule.value.destination), {})) > 0 ? stateless_rule.value.destination : []
                   content {
                     address_definition = try(destination.key, null)
                   }
                 }
 
                 dynamic "destination_port" {
-                  for_each = length(try(toset(stateless_rule.value.destinationPorts), {})) > 0 ? [1] : []
+                  for_each = length(try(toset(stateless_rule.value.destinationPorts), {})) > 0 ? stateless_rule.value.destinationPort : []
                   content {
                     from_port = try(destination_port.value.from, null)
                     to_port   = try(destination_port.value.to, null)
